@@ -25,3 +25,4 @@ wandb_result
 
 output
 checkpoints
+main_config.sh
