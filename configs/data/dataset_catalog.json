@@ -1,0 +1,674 @@
+{
+    "imagenet1k_beeond": {
+        "data_type": "colorimagefolder",
+        "targzroot": "/groups/gaa50131/user/nakashima/datasets/imagenet/ImageNet.tar.gz",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/beeond/ImageNet/train",
+            "num_imgs": 1281167
+        },
+        "val": {
+            "dataroot": "/beeond/ImageNet/val",
+            "num_imgs": 50000
+        }
+    },
+    "imagenet1k_folder": {
+        "data_type": "colorimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/datasets/ImageNet/train",
+            "num_imgs": 1281167
+        },
+        "val": {
+            "dataroot": "/groups/gaa50131/datasets/ImageNet/val",
+            "num_imgs": 50000
+        }
+    },
+    "imagenet1k_1ins_folder1_canny": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/OIN-canny",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder2_canny": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/OIN2-canny",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder3_canny": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/OIN3-canny",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder4_canny": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/OIN4-canny",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder1_gray": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/OIN-gray",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder2_gray": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/OIN2-gray",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder3_gray": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/OIN3-gray",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder4_gray": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/OIN4-canny",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder1_binary": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/OIN-binary",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder2_binary": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/OIN2-binary",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder3_binary": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/OIN3-binary",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder4_binary": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/OIN4-binary",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder1": {
+        "data_type": "colorimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/one-insImageNet1",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder2": {
+        "data_type": "colorimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/one-insImageNet2",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder3": {
+        "data_type": "colorimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/one-insImageNet3",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet1k_1ins_folder4": {
+        "data_type": "colorimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/one-insImageNet4",
+            "num_imgs": 1000
+        }
+    },
+    "imagenet100": {
+        "data_type": "colorimagefolder",
+        "targzroot": "/groups/gaa50131/user/nakashima/datasets/imagenet/ImageNet100.tar.gz",
+        "num_classes": 100,
+        "train": {
+            "dataroot": "/beeond/ImageNet100/train",
+            "num_imgs": 128585
+        },
+        "val": {
+            "dataroot": "/beeond/ImageNet100/val",
+            "num_imgs": 5000
+        }
+    },
+    "imagenet1k_contour_beeond": {
+        "data_type": "grayimagefolder",
+        "targzroot": "/groups/gaa50131/user/nakashima/datasets/imagenet/imagenet_contour.tar.gz",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/beeond/imagenet_contour/train",
+            "num_imgs": 1281167
+        },
+        "val": {
+            "dataroot": "/beeond/imagenet_contour/val",
+            "num_imgs": 50000
+        }
+    },
+    "imagenet1k_contour_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakashima/datasets/imagenet/imagenet_contour/train",
+            "num_imgs": 1281167
+        },
+        "val": {
+            "dataroot": "/groups/gaa50131/user/nakashima/datasets/imagenet/imagenet_contour/val",
+            "num_imgs": 50000
+        }
+    },
+    "shaders1k_1ins": {
+        "data_type": "colorimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/home/acc12930pb/working/graphics/Shaders/shaders21k/image_generation/shaders/shaders1k_1ins",
+            "num_imgs": 1000
+        }
+    },
+    "shaders1k_1k": {
+        "data_type": "colorimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/home/acc12930pb/working/graphics/Shaders/shaders21k/image_generation/shaders/shaders1k_1k",
+            "num_imgs": 1000000
+        }
+    },
+    "fractal1k_folder": {
+        "data_type": "grayimagefolder_original",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/datasets/fractaldb/ablation_bestpractice/FractalDB1k_1",
+            "num_imgs": 1000000
+        }
+    },
+    "ofdb1k_1ins": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/5/gcd50691/datasets/FDB1k-1ins",
+            "num_imgs": 1000
+        }
+    },
+    "ofdb1k_1ins_patch": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/5/gcd50691/datasets/FDB1k-1ins-patch",
+            "num_imgs": 10000
+        }
+    },
+    "ofdb10k_beeond": {
+        "data_type": "grayimagefolder",
+        "targzroot": "/groups/gaa50131/user/nakamura/datasets/FractalDB10k.tar.gz",
+        "num_classes": 10000,
+        "train": {
+            "dataroot": "/beeond/FractalDB10k",
+            "num_imgs": 10000
+        }
+    },
+    "ofdb100k_patch_beeond": {
+        "data_type": "grayimagefolder",
+        "targzroot": "/groups/gaa50131/user/nakamura/datasets/FractalDB100k_patch.tar.gz",
+        "num_classes": 100000,
+        "train": {
+            "dataroot": "/beeond/FractalDB100k_patch",
+            "num_imgs": 100000
+        }
+    },
+    "ofdb10k_patch_beeond": {
+        "data_type": "grayimagefolder",
+        "targzroot": "/groups/gaa50131/user/nakamura/datasets/FractalDB10k_patch.tar.gz",
+        "num_classes": 10000,
+        "train": {
+            "dataroot": "/beeond/FractalDB10k_patch",
+            "num_imgs": 10000
+        }
+    },
+    "ofdb100k_beeond": {
+        "data_type": "grayimagefolder",
+        "targzroot": "/groups/gaa50131/user/nakamura/datasets/FractalDB100k.tar.gz",
+        "num_classes": 100000,
+        "train": {
+            "dataroot": "/beeond/FractalDB100k",
+            "num_imgs": 100000
+        }
+    },
+    "fractal1k_ins_folder224": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/fractal_instance224_db/cate1k/fractal1k_instance_db_224",
+            "num_imgs": 1000
+        }
+    },
+    "fractal100_ins_folder224": {
+        "data_type": "grayimagefolder",
+        "num_classes": 100,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/fractal_instance224_db/cate100/fractal100_instance_db1_224",
+            "num_imgs": 1000
+        }
+    },
+    "fractal10_ins_folder224": {
+        "data_type": "grayimagefolder",
+        "num_classes": 10,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/fractal_instance224_db/cate10/fractal10_instance_db1_224",
+            "num_imgs": 1000
+        }
+    },
+    "fractal1k_ins_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/fractal_instance_db/cate1k/fractal1k_instance_db",
+            "num_imgs": 1000
+        }
+    },
+    "rmvs_mv12fractal1k_ins_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/datasets/MV-FractalDB/var0.05/cat1k_ins145/fixation-view12",
+            "num_imgs": 1000
+        }
+    },
+    "fractal100_ins_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 100,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/fractal_instance_db/cate100/fractal100_instance_db1",
+            "num_imgs": 1000
+        }
+    },
+    "fractal10_ins_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 10,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/fractal_instance_db/cate10/fractal10_instance_db1",
+            "num_imgs": 1000
+        }
+    },
+    "fractal1k_1kins_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 10,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1000_size512",
+            "num_imgs": 1000000
+        }
+    },
+    "fractal1k_1kins_beeond": {
+        "data_type": "grayimagefolder",
+        "targzroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1000_size512.tar.gz",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/beeond/cat1000_ins1000_size512",
+            "num_imgs": 1000000
+        }
+    },
+    "fractal1k_ins_point_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1_size512_change_texture/point/cate1k/gray_point_1k",
+            "num_imgs": 1000
+        }
+    },
+    "fractal100_ins_point_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 100,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1_size512_change_texture/point/cate100/gray_point_100db1",
+            "num_imgs": 1000
+        }
+    },
+    "fractal10_ins_point_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 10,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1_size512_change_texture/point/cate10/gray_point_10db1",
+            "num_imgs": 1000
+        }
+    },
+    "fractal1k_ins_patch0_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1_size512_change_texture/patch0/cate1k/gray_patch0_1k",
+            "num_imgs": 1000
+        }
+    },
+    "fractal100_ins_patch0_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 100,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1_size512_change_texture/patch0/cate100/gray_patch0_100db1",
+            "num_imgs": 1000
+        }
+    },
+    "fractal10_ins_patch0_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 10,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1_size512_change_texture/patch0/cate10/gray_patch0_10db1",
+            "num_imgs": 1000
+        }
+    },
+    "fractal1k_ins_patch7_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1_size512_change_texture/patch7/cate1k/gray_patch7_filled_1k",
+            "num_imgs": 1000
+        }
+    },
+    "fractal100_ins_patch7_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 100,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1_size512_change_texture/patch7/cate100/gray_patch7_filled_100db1",
+            "num_imgs": 1000
+        }
+    },
+    "fractal10_ins_patch7_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 10,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1_size512_change_texture/patch7/cate10/gray_patch7_filled_10db1",
+            "num_imgs": 1000
+        }
+    },
+    "fractal1k_ins_patch15_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1_size512_change_texture/patch15/cate1k/gray_patch15_filled_1k",
+            "num_imgs": 1000
+        }
+    },
+    "fractal100_ins_patch15_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 100,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1_size512_change_texture/patch15/cate100/gray_patch15_filled_100db1",
+            "num_imgs": 1000
+        }
+    },
+    "fractal10_ins_patch15_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 10,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/cat1000_ins1_size512_change_texture/patch15/cate10/gray_patch15_filled_10db1",
+            "num_imgs": 1000
+        }
+    },
+    "rndb3d10_folder": {
+        "data_type": "colorimagefolder",
+        "num_classes": 10,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/random_nise10_1ins_3d_dataset",
+            "num_imgs": 10
+        }
+    },
+    "rndb3d1000_folder": {
+        "data_type": "colorimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/random_nise1000_1ins_3d_dataset",
+            "num_imgs": 1000
+        }
+    },
+    "rndb3d100_folder": {
+        "data_type": "colorimagefolder",
+        "num_classes": 100,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/random_nise100_1ins_3d_dataset",
+            "num_imgs": 100
+        }
+    },
+    "rndb3d10k_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 10000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/random_nise10000_1ins_3d_dataset",
+            "num_imgs": 10000
+        }
+    },
+    "rndb3d100k_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 100000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/random_nise100000_1ins_3d_dataset",
+            "num_imgs": 100000
+        }
+    },
+    "rndb1d100_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 100,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/random_nise100_1ins_1d_dataset",
+            "num_imgs": 100
+        }
+    },
+    "rndb1d10_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 10,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/random_nise10_1ins_1d_dataset",
+            "num_imgs": 10
+        }
+    },
+    "rndb1d1000_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/random_nise1000_1ins_1d_dataset",
+            "num_imgs": 1000
+        }
+    },
+    "rndb1d10k_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 10000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/random_nise10000_1ins_1d_dataset",
+            "num_imgs": 10000
+        }
+    },
+    "rndb1d100k_folder": {
+        "data_type": "grayimagefolder",
+        "num_classes": 100000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/random_nise100000_1ins_1d_dataset",
+            "num_imgs": 100000
+        }
+    },
+    "orcdb1k_folder1": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/ORCDB1k-1-1",
+            "num_imgs": 1000
+        }
+    },
+    "orcdb1k_folder2": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/ORCDB1k-2-1",
+            "num_imgs": 1000
+        }
+    },
+    "orcdb1k_folder3": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/ORCDB1k-3-1",
+            "num_imgs": 1000
+        }
+    },
+    "orcdb10k_folder": {
+        "data_type": "grayimagefolder",
+        "targzroot": "/groups/gaa50131/user/nakamura/datasets/orcdb10k.tar.gz",
+        "num_classes": 10000,
+        "train": {
+            "dataroot": "/beeond/orcdb10k",
+            "num_imgs": 10000
+        }
+    },
+    "orcdb100k_folder": {
+        "data_type": "grayimagefolder",
+        "targzroot": "/groups/gaa50131/user/nakamura/datasets/orcdb100k.tar.gz",
+        "num_classes": 100000,
+        "train": {
+            "dataroot": "/beeond/orcdb100k",
+            "num_imgs": 100000
+        }
+    },
+    "oex_fractaldb1k_folder1": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/ExFractal1k-1-1",
+            "num_imgs": 1000
+        }
+    },
+    "oex_fractaldb1k_folder2": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/ExFractal1k-3-1",
+            "num_imgs": 1000
+        }
+    },
+    "oex_fractaldb1k_folder3": {
+        "data_type": "grayimagefolder",
+        "num_classes": 1000,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakamura/datasets/ExFractal1k-3-1",
+            "num_imgs": 1000
+        }
+    },
+    "cifar10": {
+        "data_type": "colorimagefolder",
+        "targzroot": "/groups/gaa50131/user/nakashima/datasets/cifar10.tar.gz",
+        "num_classes": 10,
+        "train": {
+            "dataroot": "/beeond/cifar10/train",
+            "num_imgs": 50000
+        },
+        "val": {
+            "dataroot": "/beeond/cifar10/val",
+            "num_imgs": 10000
+        }
+    },
+    "cifar100": {
+        "data_type": "colorimagefolder",
+        "targzroot": "/groups/gaa50131/user/nakashima/datasets/cifar100.tar.gz",
+        "num_classes": 100,
+        "train": {
+            "dataroot": "/beeond/cifar100/train",
+            "num_imgs": 50000
+        },
+        "val": {
+            "dataroot": "/beeond/cifar100/val",
+            "num_imgs": 10000
+        }
+    },
+
+    "cifar100_folder": {
+        "data_type": "colorimagefolder",
+        "num_classes": 100,
+        "train": {
+            "dataroot": "/groups/gaa50131/user/nakashima/datasets/cifar100/train",
+            "num_imgs": 50000
+        },
+        "val": {
+            "dataroot": "/groups/gaa50131/user/nakashima/datasets/cifar100/val",
+            "num_imgs": 10000
+        }
+    },
+    "stanford_cars": {
+        "data_type": "colorimagefolder",
+        "num_classes": 196,
+        "train": {
+            "dataroot": "$SGE_LOCALDIR/stanford_cars/train/extracted",
+            "num_imgs": 8144
+        },
+        "val": {
+            "dataroot": "$SGE_LOCALDIR/stanford_cars/test/extracted",
+            "num_imgs": 8041
+        }
+    },
+    "flowers": {
+        "data_type": "colorimagefolder",
+        "targzroot": "/groups/gaa50131/user/nakashima/datasets/flowers.tar.gz",
+        "num_classes": 102,
+        "train": {
+            "dataroot": "$SGE_LOCALDIR/flower_data/train",
+            "num_imgs": 6552
+        },
+        "val": {
+            "dataroot": "$SGE_LOCALDIR/flower_data/valid",
+            "num_imgs": 818
+        }
+    },
+    "places30": {
+        "data_type": "colorimagefolder",
+        "targzroot": "/groups1/gaa50131/user/nakashima/datasets/Places30.tar.gz",
+        "num_classes": 30,
+        "train": {
+            "dataroot": "/beeond/Places30/train",
+            "num_imgs": 149254
+        },
+        "val": {
+            "dataroot": "/beeond/Places30/val",
+            "num_imgs": 3000
+        }
+    },
+    "voc12": {
+        "data_type": "colorimagefolder",
+        "targzroot": "/groups1/gaa50131/user/nakashima/datasets/PASCALVOC2012.tar.gz",
+        "num_classes": 20,
+        "train": {
+            "dataroot": "$SGE_LOCALDIR/PASCALVOC2012/train",
+            "num_imgs": 13609
+        },
+        "val": {
+            "dataroot": "$SGE_LOCALDIR/PASCALVOC2012/val",
+            "num_imgs": 13841
+        }
+    }
+}
