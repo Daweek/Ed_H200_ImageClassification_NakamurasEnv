@@ -17,7 +17,6 @@ source /etc/profile.d/modules.sh
 module purge
 
 module load hpcx-mt/2.20 cuda/12.1/12.1.1 cudnn/9.21/9.21.1 nccl/2.30/2.30.4-1
-
 eval "$(pyenv init - bash)"
 pyenv local 3.11.1
 
@@ -26,7 +25,6 @@ blank_lines 2
 env | grep PBS 
 blank_lines 2
 qstat -f
-
 
 # ========= Get local Directory ======================================================
 if [  "$PBS_O_WORKDIR" = "$HOME" ]; then
@@ -79,6 +77,16 @@ cecho orange "______Start Computing_________"
 cecho orange "Job Started on: $(date)"
 start_time=$(date +%s%3N)
 
+# ========== Log The script job before running it
+export OUTPUT_DIR=$PBS_O_WORKDIR/output
+# Print this file script
+SCRIPT_LAUNCHED=$(realpath "$0")
+cecho blue "Script launched: $SCRIPT_LAUNCHED"
+# Copy the script that was launched to the output directory
+SCRIPT_NAME=$(basename "$0")
+cecho blue "Copied script that was launched: $SCRIPT_LAUNCHED"
+cp "$SCRIPT_LAUNCHED" "$OUTPUT_DIR/${JOB_ID}_ran.sh"
+
 
 ###################################### Untar to SSD
 export SSD=$PBS_LOCALDIR
@@ -95,6 +103,7 @@ echo "Finished copying and Untar..."
 
 export DATASET='VA1k'
 export SGE_LOCALDIR='/local/acc12930pb'
+export EXPERIMENT=${JOB_ID}_Cifar100_timm_${DATASET}_Bs512_files_512x_VAconfig_H_NoRandom
  
 
 # If the number of samples used for pre-training is 1k
@@ -105,10 +114,10 @@ mpirun -np ${NUM_GPUS} --use-hwthread-cpus --bind-to socket --oversubscribe -mca
     model.optim.opt=sgd model.optim.lr=0.01 model.optim.weight_decay=1.0e-4 \
     model.scheduler.args.warmup_epochs=10 \
     logger.save_epoch_freq=100 \
-    logger.group=from_timm_${DATASET}_Bs512_Ep300_files_512x_VAconfig_V_CIFAR100 \
+    logger.group=${EXPERIMENT} \
     ckpt=/home/acc12930pb/working/transformer/beforedali_timm_main_sora/checkpoint/tiny/va1k/pre_training/pretrain_deit_tiny_va1k_lr1.0e-3_epochs300_bs1024_files_512x_VAconfig_V/last.pth.tar \
-    output_dir=./checkpoints/finetuneCifar100_from_timm_${DATASET}_Bs512_files_512x_VAconfig_H \
-    mode=finetune +script=tar +logwandb=True seed=-1
+    output_dir=./checkpoints/${EXPERIMENT} \
+    mode=finetune +script=tar +logwandb=True seed=42
     
 # =========== End of RUNNING ============================================================
 

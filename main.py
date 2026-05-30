@@ -18,7 +18,7 @@ import random
 
 from models.load_local_pretrained_model import load_original_pretrained_model
 
-# torch.backends.cudnn.benchmark = True
+torch.backends.cudnn.benchmark = True
 
 
 def train_one_epoch(cfg, epoch, dataloader, mixup_fn, model, criterion, optimizer, loss_scaler, lr_scheduler, n_iter):
@@ -279,6 +279,9 @@ def main(cfg):
                     'scaler': loss_scaler.state_dict(),
                     'epoch': epoch
                 }, save_path)
+
+    if dist.get_rank() == 0 and logger is not None:
+        logger.log_items({'max_acc@1': max_accuracy}, epoch)
 
     if cfg.mode == 'finetune':
         print(f'* Max Acc@1: {max_accuracy:.3f}')
