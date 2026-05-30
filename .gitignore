@@ -9,9 +9,9 @@ wandb/
 wandb_result/
 
 output/*
-output/.gitkeep
+!output/.gitkeep
 
 checkpoints/*
-checkpoints/.gitkeep
+!checkpoints/.gitkeep
 
 main_config.sh
