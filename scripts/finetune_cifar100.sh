@@ -2,12 +2,13 @@
 #PBS -q rt_HF
 #PBS -l select=1:ncpus=192:ngpus=8:mpiprocs=192
 #PBS -N finet_c100
-#PBS -l walltime=02:00:00
+#PBS -l walltime=01:30:00
 #PBS -P gaf51130
 #PBS -j oe
 #PBS -V
 #PBS -koed
 #PBS -o output/
+#PBS -v USE_SSH=1
 
 # =========== Configuration =========================================================
 source $HOME/utils/main_config.sh
@@ -89,35 +90,45 @@ cp "$SCRIPT_LAUNCHED" "$OUTPUT_DIR/${JOB_ID}_ran.sh"
 
 
 ###################################### Untar to SSD
+
+FT_DATASET_NAME=cifar100
+NUM_CLS=100
+TRAIN_IMG=50000
+VAL_IMG=10000
+
 export SSD=$PBS_LOCALDIR
     echo "LOCAL_SSD: ${SSD}"
 
-export DATASET_NAME=cifar100
-
 echo "Copy and Untar..."
-tar -xf /groups/gaf51130/dataset/cifar100.tar -C $SSD
-readlink -f ${SSD}/${DATASET_NAME}
-ls ${SSD}/${DATASET_NAME} 
+tar -xf /groups/gaf51130/dataset/${FT_DATASET_NAME}.tar -C $SSD
+readlink -f ${SSD}/${FT_DATASET_NAME}
+ls ${SSD}/${FT_DATASET_NAME} 
 echo "Finished copying and Untar..."
 
 
-export DATASET='VA1k'
-export SGE_LOCALDIR='/local/acc12930pb'
-export EXPERIMENT=${JOB_ID}_Cifar100_timm_${DATASET}_Bs512_files_512x_VAconfig_H_NoRandom
- 
+###################################### Untar to SSD
+# export PRT_DATASET='VA1k'
+export PRT_DATASET='1pF'
+export EXPERIMENT=${JOB_ID}_${FT_DATASET_NAME}_${PRT_DATASET}_Org_1pF_H_Random
+# Mine pre-trained using the Original VA dataset
+# export CKPT=/home/acc12930pb/working/transformer/beforedali_timm_main_sora/checkpoint/tiny/va1k/pre_training/pretrain_deit_tiny_va1k_lr1.0e-3_epochs300_bs1024_files_512x_VAconfig_V/last.pth.tar
+# Original from SORA
+# export CKPT=/home/acc12930pb/working/transformer/nakamura/Ed_H200_ImageClassification_NakamurasEnv/checkpoints/original_fromSora/vit_tiny_with_visualatom_1k.pth.tar
+# Original from 1p_Fractal
+ export CKPT=/home/acc12930pb/working/transformer/nakamura/Ed_H200_ImageClassification_NakamurasEnv/checkpoints/org_1pFractal/vit_tiny_patch16_224_sigma3.5_delta0.1_sample1000_80000ep.pth
 
 # If the number of samples used for pre-training is 1k
 mpirun -np ${NUM_GPUS} --use-hwthread-cpus --bind-to socket --oversubscribe -mca pml ob1 -mca btl self,vader -x MASTER_ADDR=${MASTER_ADDR} -x MASTER_PORT=${MASTER_PORT} python -B main.py \
-    data=colorimagefolder data.baseinfo.name=cifar100 data.baseinfo.train_imgs=50000 data.baseinfo.val_imgs=10000 data.baseinfo.num_classes=100 \
-    data.trainset.root=$SSD/cifar100/train data.valset.root=$SSD/cifar100/val \
+    data=colorimagefolder data.baseinfo.name=${FT_DATASET_NAME} data.baseinfo.train_imgs=${TRAIN_IMG} data.baseinfo.val_imgs=${VAL_IMG} data.baseinfo.num_classes=${NUM_CLS} \
+    data.trainset.root=$SSD/${FT_DATASET_NAME}/train data.valset.root=$SSD/${FT_DATASET_NAME}/val \
     data.loader.batch_size=96 model=vit model.arch.model_name=deit_tiny_patch16_224 epochs=1000  \
     model.optim.opt=sgd model.optim.lr=0.01 model.optim.weight_decay=1.0e-4 \
     model.scheduler.args.warmup_epochs=10 \
     logger.save_epoch_freq=100 \
     logger.group=${EXPERIMENT} \
-    ckpt=/home/acc12930pb/working/transformer/beforedali_timm_main_sora/checkpoint/tiny/va1k/pre_training/original_fromSora/vit_tiny_with_visualatom_1k.pth.tar \
+    ckpt=${CKPT} \
     output_dir=./checkpoints/${EXPERIMENT} \
-    mode=finetune +script=tar +logwandb=True
+    mode=finetune +script=pth +logwandb=True seed=-1
     
 # =========== End of RUNNING ============================================================
 
@@ -130,7 +141,7 @@ cecho orange "This experiment Duration: "
 convert_milliseconds "$total_duration"
 cecho orange "JOB ID: ------- >>>>>>  $JOB_ID"
 cecho red    "Hostname:------ >>>>>>  $(hostname)"
-cecho bold magenta "Experiment: $EXPFULL_EXPERIMENT"
+cecho bold magenta "Experiment: $EXPERIMENT"
 cecho orange "Job finished on: $(date)"
 cecho orange "______Finish_________"
 echo "                   "

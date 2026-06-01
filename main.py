@@ -161,7 +161,7 @@ def main(cfg):
         if cfg.ckpt is not None and cfg.script == 'tar':
             print("Loading with timm pth.tar...")
             load_original_pretrained_model(model, cfg.ckpt)
-        elif cfg.ckpt is not None:
+        elif cfg.ckpt is not None and cfg.script == 'pth':
             print("Loading using pth...")
             ckpt = torch.load(cfg.ckpt, map_location='cpu')
             if cfg.ckpt.endswith('.pth'):
