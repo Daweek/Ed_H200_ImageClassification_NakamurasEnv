@@ -1,1 +1,1 @@
-/home/acc12930pb/utils/main_config.sh
+/home/qai10413uh/utils/main_config.sh
