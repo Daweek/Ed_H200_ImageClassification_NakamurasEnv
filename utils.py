@@ -10,8 +10,7 @@ def fix_random_seed(seed):
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
-    # torch.cuda.manual_seed_all(seed)
-    # torch.backends.cudnn.deterministic = True
+    torch.cuda.manual_seed_all(seed)
 
 
 def init_distributed_mode(dist_cfg):

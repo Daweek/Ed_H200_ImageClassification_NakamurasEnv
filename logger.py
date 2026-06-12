@@ -33,7 +33,7 @@ class WandBLogger():
     def __init__(self, cfg):
         self.cfg = cfg
         # wandb.login(key="1f6461febebe3a677cd0465561652aecd814b0e0")
-        self.logger = wandb.init(entity='daweek', project='Nak_FDSL', name=cfg.logger.group, group=cfg.mode, config=cfg)
+        self.logger = wandb.init(entity='daweek', project='Nak_FDSL', name=cfg.logger.group, group=cfg.mode, config=cfg, tags=[cfg.data.baseinfo.name,cfg.prtdataset])
 
 # class WandBLogger():
 #     def __init__(self, cfg):

@@ -1,8 +1,18 @@
 #!/bin/bash
 # To save everything on the 
+echo "========================================"
+echo "Started: $(date)"
+echo "PID: $$"
+echo "Command: $0 $*"
+echo "========================================"
+
 logfile="output/${$}.nodo.OU"
 exec >"$logfile" 2>&1
 
+echo "Script contents:"
+echo "----------------------------------------"
+cat "$0"
+echo "----------------------------------------"
 
 # =========== Configuration =========================================================
 source $HOME/utils/main_config.sh
@@ -52,9 +62,9 @@ blank_lines 2
 export HYDRA_FULL_ERROR=1
 
 # =========== Start of Job =========================================================
-for iter in {0..3}; do
+for iter in {0..0}; do
     blank_lines 4
-    cecho orange "##### START - Iteration $((iter + 1))/4 ##############"
+    cecho orange "##### START - Iteration $((iter + 1)) ##############"
     cecho orange "______Start Computing_________"
     cecho orange "Job Started on: $(date)"
     start_time=$(date +%s%3N)
@@ -62,26 +72,44 @@ for iter in {0..3}; do
     # Calculate current JOB_ID by incrementing
     CURRENT_JOB_ID=$((JOB_ID + iter))
 
-    ###################################### Untar to SSD
-    export DATASET='VA1k'
+###################################### Untar to SSD
+    # Finte tune dataset data
+    FT_DATASET_NAME=cifar100
+    NUM_CLS=100
+    TRAIN_IMG=50000
+    VAL_IMG=10000
     export SSD='/local/acc12930pb'
-    export EXPERIMENT=${CURRENT_JOB_ID}_Cifar100_${DATASET}_OrgSora_H_Random
+
+    # export PRT_DATASET='VA1k'
+    # export PRT_DATASET='1pF'
+    # export EXPERIMENT=${JOB_ID}_${FT_DATASET_NAME}_${PRT_DATASET}_Org_H_Random
+    # From Ferran
+    export PRT_DATASET='VA1k'
+    export EXPERIMENT=${CURRENT_JOB_ID}_${FT_DATASET_NAME}_${PRT_DATASET}_Ferran_SoraOldStack_H_Random
+
+    # Mine pre-trained using the Original VA dataset
+    # export CKPT=/home/acc12930pb/working/transformer/beforedali_timm_main_sora/checkpoint/tiny/va1k/pre_training/pretrain_deit_tiny_va1k_lr1.0e-3_epochs300_bs1024_files_512x_VAconfig_V/last.pth.tar
+    # Original from SORA
+    # export CKPT=/home/acc12930pb/working/transformer/nakamura/Ed_H200_ImageClassification_NakamurasEnv/checkpoints/original_fromSora/vit_tiny_with_visualatom_1k.pth.tar
+    # Original from 1p_Fractal
+    # export CKPT=/home/acc12930pb/working/transformer/nakamura/Ed_H200_ImageClassification_NakamurasEnv/checkpoints/org_1pFractal/vit_tiny_patch16_224_sigma3.5_delta0.1_sample1000_80000ep.pth
+    # Original from Ferran
+    export CKPT=/home/acc12930pb/working/transformer/nakamura/Ed_H200_ImageClassification_NakamurasEnv/checkpoints/fromFerran/SoraOldStack.pth.tar
 
     # If the number of samples used for pre-training is 1k
     mpirun -np ${NUM_GPUS} --use-hwthread-cpus --bind-to socket --oversubscribe -mca pml ob1 -mca btl self,vader -x MASTER_ADDR=${MASTER_ADDR} -x MASTER_PORT=${MASTER_PORT} python -B main.py \
-        data=colorimagefolder data.baseinfo.name=cifar100 data.baseinfo.train_imgs=50000 data.baseinfo.val_imgs=10000 data.baseinfo.num_classes=100 \
-        data.trainset.root=$SSD/cifar100/train data.valset.root=$SSD/cifar100/val \
+        data=colorimagefolder data.baseinfo.name=${FT_DATASET_NAME} data.baseinfo.train_imgs=${TRAIN_IMG} data.baseinfo.val_imgs=${VAL_IMG} data.baseinfo.num_classes=${NUM_CLS} \
+        data.trainset.root=$SSD/${FT_DATASET_NAME}/train data.valset.root=$SSD/${FT_DATASET_NAME}/val \
         data.loader.batch_size=96 model=vit model.arch.model_name=deit_tiny_patch16_224 epochs=1000  \
         model.optim.opt=sgd model.optim.lr=0.01 model.optim.weight_decay=1.0e-4 \
         model.scheduler.args.warmup_epochs=10 \
         logger.save_epoch_freq=100 \
         logger.group=${EXPERIMENT} \
-        ckpt=/home/acc12930pb/working/transformer/nakamura/Ed_H200_ImageClassification_NakamurasEnv/checkpoints/original_fromSora/vit_tiny_with_visualatom_1k.pth.tar \
+        ckpt=${CKPT} \
         output_dir=./checkpoints/${EXPERIMENT} \
-        mode=finetune +script=tar +logwandb=True seed=-1
-
-        
-    # =========== End of RUNNING ============================================================
+        mode=finetune +script=tar +logwandb=True seed=-1 +prtdataset=${PRT_DATASET}
+    
+# =========== End of RUNNING ============================================================
 
     blank_lines 4
 

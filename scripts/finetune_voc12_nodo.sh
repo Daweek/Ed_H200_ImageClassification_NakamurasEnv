@@ -75,10 +75,10 @@ for iter in {0..9}; do
 
     ###################################### Untar to SSD
     # Finte tune dataset data
-    FT_DATASET_NAME=cifar10
-    NUM_CLS=10
-    TRAIN_IMG=50000
-    VAL_IMG=10000
+    FT_DATASET_NAME=voc12
+    NUM_CLS=20
+    TRAIN_IMG=13609
+    VAL_IMG=13841
     export SSD='/local/acc12930pb'
 
     export PRT_DATASET='VA1k'

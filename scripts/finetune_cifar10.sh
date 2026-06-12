@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -q rt_HF
 #PBS -l select=1:ncpus=192:ngpus=8:mpiprocs=192
-#PBS -N finet_c100
+#PBS -N finet_c10
 #PBS -l walltime=01:30:00
 #PBS -P gaf51130
 #PBS -j oe
@@ -91,10 +91,10 @@ cp "$SCRIPT_LAUNCHED" "$OUTPUT_DIR/${JOB_ID}_ran.sh"
 
 ###################################### Untar to SSD
 
-FT_DATASET_NAME=cifar100
-NUM_CLS=100
-TRAIN_IMG=50000
-VAL_IMG=10000
+FT_DATASET_NAME=cifar10
+NUM_CLS=10
+TRAIN_IMG=5000
+VAL_IMG=1000
 
 export SSD=$PBS_LOCALDIR
     echo "LOCAL_SSD: ${SSD}"

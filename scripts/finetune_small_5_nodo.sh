@@ -127,7 +127,7 @@ for FT_DATASET_NAME in cifar10 cifar100 cars flowers voc12; do
         logger.group=${EXPERIMENT} \
         ckpt=${CKPT} \
         output_dir=./checkpoints/${EXPERIMENT} \
-        mode=finetune +script=tar +logwandb=True seed=-1
+        mode=finetune +script=tar +logwandb=True seed=-1 +prtdataset=${PRT_DATASET}
 
     # =========== End of RUNNING ============================================================
 

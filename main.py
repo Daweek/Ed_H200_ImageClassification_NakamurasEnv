@@ -18,7 +18,6 @@ import random
 
 from models.load_local_pretrained_model import load_original_pretrained_model
 
-# torch.backends.cudnn.benchmark = True
 
 
 def train_one_epoch(cfg, epoch, dataloader, mixup_fn, model, criterion, optimizer, loss_scaler, lr_scheduler, n_iter):
@@ -118,10 +117,13 @@ def main(cfg):
     # Fix random seed
     if cfg.seed != -1:
         print(colored("Setting the seeds for reproducibility...", "red"))
+        torch.backends.cudnn.benchmark = True
+        torch.backends.cudnn.deterministic = True
         fix_random_seed(cfg.seed + dist.get_rank())
     else:
         print(colored("Random seed is not fixed. Results may be different each time.", "red"))
-
+        torch.backends.cudnn.benchmark = False
+        torch.backends.cudnn.deterministic = False
     # Create logger
     logger = None
     if dist.get_rank() == 0:
