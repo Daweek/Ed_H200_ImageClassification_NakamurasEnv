@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -l rt_QF=4
 #PBS -N finet_imnet
-#PBS -l walltime=20:00:00
+#PBS -l walltime=06:00:00
 #PBS -W group_list=qgai50157
 #PBS -j oe
 #PBS -V
@@ -108,14 +108,14 @@ u_start_time=$(date +%s%3N)
 blank_lines 2
 cecho green "Copy and Untar..."
 # --display-map --display-allocation
-mpiexec  -npernode 1 -np 4 -hostfile $PBS_NODEFILE --use-hwthread-cpus --bind-to none --oversubscribe tar -xf /home/qai10413uh/dataset/${FT_DATASET_NAME}.tar -C $SSD
+mpiexec  -npernode 1 -np 4 -hostfile $PBS_NODEFILE --use-hwthread-cpus --bind-to none --oversubscribe bash /home/qai10413uh/utils/untarImnet.sh $SSD
 readlink -f ${SSD}/${FT_DATASET_NAME}
 ls ${SSD}/${FT_DATASET_NAME} 
 cecho green "Finished copying and Untar..."
 
 u_end_time=$(date +%s%3N)
 u_total_duration=$((u_end_time - u_start_time))
-convert_milliseconds "$total_duration"
+convert_milliseconds "$u_total_duration"
 cecho magenta "Untar finished on: $(date)"
 cecho magenta "______Finish Untaring_________"
 echo "                   "
@@ -146,13 +146,16 @@ for iter in {0..0}; do
     # Calculate current JOB_ID by incrementing
     CURRENT_JOB_ID=$((JOB_ID + iter))
 
-    # export PRT_DATASET='VA1k'
-    export PRT_DATASET='1pF'
-    export EXPERIMENT=${CURRENT_JOB_ID}_${FT_DATASET_NAME}_${PRT_DATASET}_Org_Q_Random
+    export PRT_DATASET='VA1k'
+    export CKPT=/home/qai10413uh/working/transformer/nakamura/Ed_H200_ImageClassification_NakamurasEnv/checkpoints/fromABCI_tofinetune/pretrain_deit_tiny_va1k_lr1.0e-3_epochs300_bs1024_files_512x_VAconfig_V_last.pth.tar
+    # export PRT_DATASET='1pF'
+    # export CKPT=/home/qai10413uh/working/transformer/nakamura/Ed_H200_ImageClassification_NakamurasEnv/checkpoints/fromABCI_tofinetune/vit_tiny_patch16_224_sigma3.5_delta0.1_sample1000_80000ep.pth
 
-    # export CKPT=/home/qai10413uh/working/transformer/nakamura/Ed_H200_ImageClassification_NakamurasEnv/checkpoints/fromABCI_tofinetune/pretrain_deit_tiny_va1k_lr1.0e-3_epochs300_bs1024_files_512x_VAconfig_V_last.pth.tar
+    export EXPERIMENT=${CURRENT_JOB_ID}_${FT_DATASET_NAME}_${PRT_DATASET}_VAconfig_Q_Random
 
-    export CKPT=/home/qai10413uh/working/transformer/nakamura/Ed_H200_ImageClassification_NakamurasEnv/checkpoints/fromABCI_tofinetune/vit_tiny_patch16_224_sigma3.5_delta0.1_sample1000_80000ep.pth
+    
+
+    
     # If the number of samples used for pre-training is 1k
     mpiexec --display-map --display-allocation -npernode ${NUM_GPU_PER_NODE} -np ${NUM_GPUS} -hostfile $PBS_NODEFILE --use-hwthread-cpus --bind-to none --oversubscribe python -B main.py \
         data=colorimagefolder data.baseinfo.name=${FT_DATASET_NAME} data.baseinfo.train_imgs=${TRAIN_IMG} data.baseinfo.val_imgs=${VAL_IMG} data.baseinfo.num_classes=${NUM_CLS} \
@@ -164,7 +167,7 @@ for iter in {0..0}; do
         logger.group=${EXPERIMENT} \
         ckpt=${CKPT} \
         output_dir=./checkpoints/${EXPERIMENT} \
-        mode=finetune +script=pth +logwandb=True seed=-1 +prtdataset=${PRT_DATASET}
+        mode=finetune +script=tar +logwandb=True seed=-1 +prtdataset=${PRT_DATASET}
         
     # =========== End of RUNNING ============================================================
 
