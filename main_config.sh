@@ -1,1 +1,0 @@
-/home/qai10413uh/utils/main_config.sh
